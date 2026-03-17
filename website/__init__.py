@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import flask
+from os import path
 from flask_login import login_manager
 
 def create_app():
