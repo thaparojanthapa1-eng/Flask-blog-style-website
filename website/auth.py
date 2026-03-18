@@ -7,9 +7,9 @@ def login():
     return "Login"
 
 @auth.route("/signup")
-def login():
+def signup():
     return "Signup"
 
 @auth.route("/logout")
-def login():
+def logout():
     return "Logout"
