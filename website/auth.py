@@ -53,7 +53,7 @@ def signup():
             new_user = User(
                 email=email,
                 username=username,
-                password=generate_password_hash(password1, method="sha256")
+                password=generate_password_hash(password1, method="pbkdf2:sha256")
             )
             Db.session.add(new_user)
             Db.session.commit()
