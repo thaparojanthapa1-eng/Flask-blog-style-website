@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, current_user
 
 views=Blueprint("views", __name__)
@@ -11,4 +11,12 @@ def home():
 
 @views.route("/create_post", methods=["GET", "POST"])
 def create_post():
+    if request.method=="POST":
+        text=request.form.get("text")
+
+        if not text:
+            flash("Post can't be empty", category="error")
+        else:
+            flash("Post created", category="success")
+
     return render_template("createpost.html")
