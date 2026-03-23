@@ -8,3 +8,7 @@ views=Blueprint("views", __name__)
 @login_required
 def home():
     return render_template("home.html", name=current_user.username)
+
+@views.route("/create_post", methods=["GET", "POST"])
+def create_post():
+    return render_template("createpost.html")
