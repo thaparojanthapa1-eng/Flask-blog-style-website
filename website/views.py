@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, request, flash
 from flask_login import login_required, current_user
+from .models import Post
+from . import Db
 
 views=Blueprint("views", __name__)
 
@@ -17,6 +19,9 @@ def create_post():
         if not text:
             flash("Post can't be empty", category="error")
         else:
+            post=Post(text=text,  author=current_user.id)
+            Db.session.add(post)
+            Db.session.commit()
             flash("Post created", category="success")
 
     return render_template("createpost.html")
