@@ -2,6 +2,6 @@
 {% block title %}Home{% endblock %}
 {% block content %}
     {% for post in posts %}
-        {{post.text}} {{user.username}}
+        {{post.text}} {{post.author.username}}
     {% endfor %}
 {% endblock %}
