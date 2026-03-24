@@ -8,11 +8,10 @@ class User(Db.Model, UserMixin):
     username = Db.Column(Db.String(150), unique=True, nullable=False)
     password = Db.Column(Db.String(150), nullable=False)
     date_created = Db.Column(Db.DateTime(timezone=True), default=func.now())
-    posts=Db.relationship("Post", backref="user", passive_delete=True)
+    posts = Db.relationship("Post", backref="author", passive_deletes=True)
 
 class Post(Db.Model):
     id = Db.Column(Db.Integer, primary_key=True)
-    text=Db.Column(Db.text, nullable=False)
+    text = Db.Column(Db.Text, nullable=False)
     date_created = Db.Column(Db.DateTime(timezone=True), default=func.now())
-    author=Db.Column(Db.Integer, Db.ForeignKey(
-        "user.id", ondelete="CASCADE"), nullable=False)
+    author_id = Db.Column(Db.Integer, Db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
