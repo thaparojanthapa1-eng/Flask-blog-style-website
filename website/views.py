@@ -35,7 +35,7 @@ def delete_post(id):
 
     if not post:
         flash("Post doesn't exist.", category="error")
-    elif current_user.id!=post.id:
+    elif current_user.id!=post.author.id:
         flash("You don't have permission to delete the post.")
     else:
         Db.session.delete(post)
